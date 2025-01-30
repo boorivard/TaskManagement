@@ -1,36 +1,46 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    box-sizing: border-box;
 }
-
-.main{
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(255, 255, 255);
+}
+.header {
+    position: fixed;
     width: 100%;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(to top, #4b3aff, #8ecdff);
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid black;
 }
-
-
-.nav-links ul{
-    width: 90%;
-    max-width: 450px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-color: #fff;
-    padding: 50px 60px 70px;
-    text-align: center;
+.logo {
+    height: 60px;
 }
-
-.nav-links ul li a{
-    color: #000000;
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+.nav-links a {
+    color: rgb(0, 0, 0);
     text-decoration: none;
+    font-size: 20px;
 }
-
-.logo{
-    /* This is a comment */
-    /* Fill out when we have logo designed */
+.nav-links a:hover {
+    color: rgb(126, 126, 126);
+}
+.container {
+    margin-top: 100px; /* Offset for fixed header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    text-align: center;
+    font-size: 30px;
 }
