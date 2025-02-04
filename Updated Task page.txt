@@ -1,0 +1,125 @@
+//Merged "task page" and "add task" scripts
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <style>
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .popup {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .popup input, .popup select, .popup textarea {
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
+      padding: 8px;
+    }
+    .popup button {
+      padding: 8px 12px;
+    }
+    .task-list {
+      margin-top: 20px;
+    }
+    .task-item {
+      background-color: #f9f9f9;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="logo.png" alt="Logo" class="logo">
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="tasks.html">Tasks</a>
+      <a href="about.html">About</a>
+    </div>
+  </div>
+  <div class="container">
+    <h2>Tasks Page</h2>
+    <p>Here you can manage all your tasks.</p>
+
+    <button id="addTaskButton">Add Task</button>
+
+    <div id="overlay" class="overlay">
+      <div class="popup">
+        <label for="taskName">Task Name:</label>
+        <input type="text" id="taskName" name="taskName">
+
+        <label for="taskDescription">Task Description:</label>
+        <textarea id="taskDescription" name="taskDescription"></textarea>
+
+        <label for="taskPriority">Priority:</label>
+        <select id="taskPriority" name="taskPriority">
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+
+        <label for="taskAssignee">Assign To:</label>
+        <input type="text" id="taskAssignee" name="taskAssignee">
+
+        <button onclick="saveTask()">Save Task</button>
+        <button onclick="closePopup()">Cancel</button>
+      </div>
+    </div>
+
+    <div class="task-list" id="taskList">
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('addTaskButton').onclick = function() {
+      document.getElementById('overlay').style.display = 'flex';
+    };
+
+    function closePopup() {
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    function saveTask() {
+      var taskName = document.getElementById('taskName').value;
+      var taskDescription = document.getElementById('taskDescription').value;
+      var taskPriority = document.getElementById('taskPriority').value;
+      var taskAssignee = document.getElementById('taskAssignee').value;
+
+      var taskItem = document.createElement('div');
+      taskItem.className = 'task-item';
+      taskItem.innerHTML = '<strong>Task Name:</strong> ' + taskName + '<br>' +
+                           '<strong>Description:</strong> ' + taskDescription + '<br>' +
+                           '<strong>Priority:</strong> ' + taskPriority + '<br>' +
+                           '<strong>Assignee:</strong> ' + taskAssignee;
+
+      document.getElementById('taskList').appendChild(taskItem);
+
+      document.getElementById('taskName').value = '';
+      document.getElementById('taskDescription').value = '';
+      document.getElementById('taskPriority').value = 'medium';
+      document.getElementById('taskAssignee').value = '';
+
+      closePopup();
+    }
+  </script>
+</body>
+</html>
